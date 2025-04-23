@@ -23,3 +23,5 @@ Here are some of the films that started this list:
 * Speed (1994) – The bus that couldn't slow down (and neither can your conversation)
 * Face/Off (1997) – When you want to explain face-swapping technology to your friends while it happens on screen
 * Flash Gordon (1980) – QUEEN soundtrack + space football = Perfect background for your weekend hangout
+* Return to Oz (1985) - Want some age appropriate(ish) nightmare fuel?
+  
