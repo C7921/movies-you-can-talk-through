@@ -1,5 +1,6 @@
 [build]
-  command = "npm run build"
+  # Skip the npm build command entirely since we don't need it
+  command = "echo 'No build step required for static files'"
   publish = "public"
   functions = "netlify/functions"
 

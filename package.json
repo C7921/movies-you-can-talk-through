@@ -4,7 +4,7 @@
   "description": "The ultimate collection of films that don't mind if you skip the plot for the popcorn!",
   "main": "build.js",
   "scripts": {
-    "build": "node build.js",
+    "build": "echo 'Netlify deployment - no build step required'",
     "start": "http-server public -p 8080",
     "dev": "npm run build && npm run start",
     "dev:netlify": "netlify dev",
