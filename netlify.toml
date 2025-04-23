@@ -1,16 +1,27 @@
 [build]
-  # Skip the npm build command entirely since we don't need it
+  # Simple build command - no need for complex build process
   command = "echo 'No build step required for static files'"
   publish = "public"
   functions = "netlify/functions"
 
-# Redirect API requests to serverless functions
+# Redirect API endpoints to specific Netlify Functions
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  from = "/api/search/movie"
+  to = "/.netlify/functions/search"
   status = 200
 
-# Fallback for SPA routing
+[[redirects]]
+  from = "/api/movie/*"
+  to = "/.netlify/functions/movie/:splat"
+  status = 200
+
+# General API fallback
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/tmdb-api/:splat"
+  status = 200
+
+# Fallback for SPA
 [[redirects]]
   from = "/*"
   to = "/index.html"
