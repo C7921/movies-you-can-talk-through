@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450">
+  <!-- Background -->
+  <rect width="300" height="450" fill="#e0e0e0"/>
+  
+  <!-- Film reel icon -->
+  <g transform="translate(150, 170)" fill="#9e9e9e">
+    <circle cx="0" cy="0" r="60"/>
+    <circle cx="0" cy="0" r="45" fill="#e0e0e0"/>
+    
+    <!-- Film holes -->
+    <circle cx="0" cy="-40" r="10"/>
+    <circle cx="28" cy="-28" r="10"/>
+    <circle cx="40" cy="0" r="10"/>
+    <circle cx="28" cy="28" r="10"/>
+    <circle cx="0" cy="40" r="10"/>
+    <circle cx="-28" cy="28" r="10"/>
+    <circle cx="-40" cy="0" r="10"/>
+    <circle cx="-28" cy="-28" r="10"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="150" y="280" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" fill="#757575">
+    No Poster
+  </text>
+  <text x="150" y="310" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#757575">
+    Available
+  </text>
+</svg>

@@ -1,0 +1,24 @@
+{
+  "name": "movies-you-can-talk-through",
+  "version": "1.0.0",
+  "description": "The ultimate collection of films that don't mind if you skip the plot for the popcorn!",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "start": "http-server public -p 8080",
+    "dev": "npm run build && npm run start"
+  },
+  "keywords": [
+    "movies",
+    "entertainment",
+    "tmdb"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
