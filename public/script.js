@@ -1,12 +1,11 @@
 /**
  * "Movies You Can Talk Through" - Main JavaScript
  * This script handles movie data fetching, display, and local storage management
- * Using Netlify Functions to proxy TMDB API calls
  */
 
 // API Constants
 const API_BASE_URL = "/api"; // This will be redirected to Netlify Functions
-const TMDB_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500"\;
+const TMDB_POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500";
 const LOCAL_STORAGE_KEY = "movieCollection";
 
 // DOM Elements
@@ -52,7 +51,7 @@ async function handleFormSubmit(event) {
     hideError();
 
     console.log("Searching for movie:", title, year ? `(${year})` : "");
-    
+
     // Fetch movie data through the Netlify function
     const movieData = await fetchMovieData(title, year);
 
@@ -89,17 +88,32 @@ async function fetchMovieData(title, year) {
     if (year) {
       queryParams += `&year=${encodeURIComponent(year)}`;
     }
-    
+
+    console.log(
+      "Making API request to:",
+      `${API_BASE_URL}/search/movie?${queryParams}`
+    );
+
     // Fetch from our serverless function
     const response = await fetch(`${API_BASE_URL}/search/movie?${queryParams}`);
-    
+
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(`API Error: ${response.status} - ${errorData.error || response.statusText}`);
+      console.error("API Error Details:", {
+        status: response.status,
+        statusText: response.statusText,
+        errorData,
+      });
+      throw new Error(
+        `API Error: ${response.status} - ${
+          errorData.error || response.statusText
+        }`
+      );
     }
 
     const data = await response.json();
-    
+    console.log("Search results:", data.results?.length || 0);
+
     // Check if we have results
     if (data.results && data.results.length > 0) {
       // Get the first (most relevant) result
@@ -107,12 +121,14 @@ async function fetchMovieData(title, year) {
 
       try {
         // Get more details about the movie
-        const detailsResponse = await fetch(`${API_BASE_URL}/movie/${movie.id}`);
-        
+        const detailsResponse = await fetch(
+          `${API_BASE_URL}/movie/${movie.id}`
+        );
+
         if (!detailsResponse.ok) {
           return createMovieObject(movie);
         }
-        
+
         const details = await detailsResponse.json();
         return createMovieObject(details);
       } catch (error) {
@@ -120,7 +136,7 @@ async function fetchMovieData(title, year) {
         return createMovieObject(movie);
       }
     }
-    
+
     return null;
   } catch (error) {
     console.error("Error fetching movie data:", error);
@@ -140,9 +156,9 @@ function createMovieObject(movieData) {
       : "Unknown",
     poster: movieData.poster_path
       ? `${TMDB_POSTER_BASE_URL}${movieData.poster_path}`
-      : "./placeholder.svg",
+      : "placeholder.svg",
     overview: movieData.overview || "",
-    director: movieData.director || "Unknown"
+    director: movieData.director || "Unknown",
   };
 }
 
